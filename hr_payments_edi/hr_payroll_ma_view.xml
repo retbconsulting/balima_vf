@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		
+		<record id="payroll_form_view_add_fields" model="ir.ui.view">
+			<field name="name">Saisie Mensuelle</field>
+			<field name="model">hr.payroll_ma</field>
+			<field name="inherit_id" ref="hr_payroll_ma.hr_payroll_ma_form" />
+			<field name="arch" type="xml">
+				<field name="move_id" position="after">
+					<field name="file_name" invisible="1"/>
+					<field name="file_payment_edi" filename="file_name" />
+				</field>
+				<xpath expr="//header" position="inside">
+                    <button name="generate_payment_edi" string="Générer l'OV" type="object"
+							 invisible="state != 'draft'"  icon="fa-eraser" />
+                </xpath>
+			</field>
+		</record>
+
+	</data>
+</odoo>

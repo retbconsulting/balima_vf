@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<data>
+		<!--
+			Form View : Model 'Déclaration mutuelle'
+		-->
+		<record id="declaration_mutuelle_form" model="ir.ui.view">
+			<field name="name">hr.mutuelle.form</field>
+			<field name="model">hr.mutuelle</field>
+			<field name="arch" type="xml">
+				<form string="Déclaration mutuelle">
+					<header>
+						<button string="Confirmer" type="object" name="validate"
+							class="oe_highlight" invisible="state != 'draft'" />
+						<button string="Générer le fichier EDI" type="object"
+							name="generate_file" class="oe_highlight" invisible="state != 'in_progress'" />
+						<button string="Regénérer le fichier EDI" type="object"
+							name="generate_file" class="oe_highlight"/>
+						<button string="Déposer" type="object" name="depose"
+							class="oe_highlight" invisible="state != 'generated'" />
+						<button string="Annuler" type="object" name="cancel"
+							class="oe_highlight" invisible="state not in ('draft','in_progress','generated','deposed')"  />
+						<field name="state" widget="statusbar"
+							statusbar_visible="draft,in_progress,generated,deposed,canceled" readonly="1" />
+					</header>
+					<sheet>
+						<group>
+							<group>
+								<field name="name" />
+								<field name="regime" />
+								<field name="annee" />
+								<field name="output" filename="output_name" />
+							</group>
+							<group>
+								<field name="company_ids" widget="many2many_tags"/>
+								<field name="trimestre" invisible="regime == 'mensuelle'" required="regime == 'trimestrielle'" />
+								<field name="period_id" invisible="regime == 'trimestrielle'" required="regime == 'mensuelle'" />
+							</group>
+						</group>
+						<group>
+							<group>
+								<field name="hr_payroll_ma_ids" readonly="1" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		
+		<!--
+			Tree View : Model 'Déclaration mutuelle'
+		-->
+		<record id="hr_mutuelle_tree" model="ir.ui.view">
+			<field name="name">hr.mutuelle.tree</field>
+			<field name="model">hr.mutuelle</field>
+			<field name="arch" type="xml">
+				<tree string="Déclaration mutuelle">
+					<field name="name" />
+ 					<field name="company_ids" />
+					<field name="annee" />
+					<field name="trimestre" />
+				</tree>
+			</field>
+		</record>
+		
+		<!--
+			Action : Model 'Déclaration mutuelle'
+		-->
+		<record id="action_hr_mutuelle" model="ir.actions.act_window">
+			<field name="name">Déclaration mutuelle</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">hr.mutuelle</field>
+			<field name="view_mode">tree,form,graph</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					<!-- Add Text Here -->
+					Cliquez pour créer une nouvelle déclaration cimr.
+				</p>
+			</field>
+		</record>
+		
+		<menuitem name="Télédéclaration mutuelle" parent="hr.menu_hr_root"
+			action="action_hr_mutuelle" id="menu_mutuelle" />
+
+	</data>
+</odoo>

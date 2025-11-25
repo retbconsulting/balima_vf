@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_ir_situation_famille_form" model="ir.ui.view">
+			<field name="name">ir.situation.famille.form</field>
+			<field name="model">ir.situation.famille</field>
+			<field name="arch" type="xml">
+				<form string="Situation famille">
+					<group col="4" colspan="4">
+						<field name="libelle" />
+						<field name="code" />
+					</group>
+
+				</form>
+			</field>
+		</record>
+
+		<record id="view_ir_situation_famille_tree" model="ir.ui.view">
+			<field name="name">ir.situation.famille.tree</field>
+			<field name="model">ir.situation.famille</field>
+			<field name="type">list</field>
+			<field name="arch" type="xml">
+				<list string="Situation famille">
+						<field name="libelle" />
+						<field name="code" />
+				</list>
+			</field>
+		</record>
+		
+		<record id="action_ir_situation_famille" model="ir.actions.act_window">
+			<field name="name">Situation famille</field>
+			<field name="res_model">ir.situation.famille</field>
+			<field name="view_mode">list,form</field>
+		</record>
+
+		<menuitem id="menu_ir_dec" name="Déclaration IR" groups="hr.group_hr_manager"/>
+
+		<menuitem id="menu_declaration_conf_ir" parent="menu_ir_dec"
+			sequence="2" name="Configuration" />
+
+		<menuitem action="action_ir_situation_famille" id="menu_ir_situation_famille"
+			parent="menu_declaration_conf_ir" sequence="1" />
+			
+	<!-- ir.taux.frais -->
+			
+		<record id="view_ir_taux_frais_form" model="ir.ui.view">
+			<field name="name">ir.taux.frais.form</field>
+			<field name="model">ir.taux.frais</field>
+			<field name="arch" type="xml">
+				<form string="Taux des frais professionnels">
+					<group col="4" colspan="4">
+						<field name="valeur" />
+						<field name="code" />
+						<field name="date_debut" />
+						<field name="date_fin" />
+					</group>
+
+				</form>
+			</field>
+		</record>
+
+		<record id="view_ir_taux_frais_tree" model="ir.ui.view">
+			<field name="name">ir.taux.frais.tree</field>
+			<field name="model">ir.taux.frais</field>
+			<field name="type">list</field>
+			<field name="arch" type="xml">
+				<list string="Taux des frais professionnels">
+						<field name="valeur" />
+						<field name="code" />
+						<field name="date_debut" />
+						<field name="date_fin" />
+				</list>
+			</field>
+		</record>
+		
+		<record id="action_ir_taux_frais" model="ir.actions.act_window">
+			<field name="name">Taux des frais professionnels</field>
+			<field name="res_model">ir.taux.frais</field>
+			<field name="view_mode">list,form</field>
+		</record>
+
+		<menuitem action="action_ir_taux_frais" id="menu_ir_taux_frais"
+			parent="menu_declaration_conf_ir" sequence="2" />
+			
+	<!-- ir.taux.frais -->
+			
+		<record id="view_ir_mode_paiement_form" model="ir.ui.view">
+			<field name="name">ir.mode.paiement.form</field>
+			<field name="model">ir.mode.paiement</field>
+			<field name="arch" type="xml">
+				<form string="Moyen de paiement">
+					<group col="4" colspan="4">
+						<field name="libelle" />
+						<field name="code" />
+					</group>
+
+				</form>
+			</field>
+		</record>
+
+		<record id="view_ir_mode_paiement_tree" model="ir.ui.view">
+			<field name="name">ir.mode.paiement.tree</field>
+			<field name="model">ir.mode.paiement</field>
+			<field name="type">list</field>
+			<field name="arch" type="xml">
+				<list string="Moyen de paiement">
+						<field name="libelle" />
+						<field name="code" />
+				</list>
+			</field>
+		</record>
+		
+		<record id="action_ir_mode_paiement" model="ir.actions.act_window">
+			<field name="name">Moyen de paiement</field>
+			<field name="res_model">ir.mode.paiement</field>
+			<field name="view_mode">list,form</field>
+		</record>
+
+		<menuitem action="action_ir_mode_paiement" id="menu_ir_mode_paiement"
+			parent="menu_declaration_conf_ir" sequence="3" />
+			
+		<!-- ir.ville -->
+		<record id="view_ir_ville_form" model="ir.ui.view">
+			<field name="name">ir.ville.form</field>
+			<field name="model">ir.ville</field>
+			<field name="arch" type="xml">
+				<form string="Commune">
+					<group col="4" colspan="4">
+						<field name="libelle" />
+						<field name="code" />
+					</group>
+
+				</form>
+			</field>
+		</record>
+
+		<record id="view_ir_ville_tree" model="ir.ui.view">
+			<field name="name">ir.ville.tree</field>
+			<field name="model">ir.ville</field>
+			<field name="type">list</field>
+			<field name="arch" type="xml">
+				<list string="Commune">
+						<field name="libelle" />
+						<field name="code" />
+				</list>
+			</field>
+		</record>
+		
+		<record id="action_ir_ville" model="ir.actions.act_window">
+			<field name="name">Commune</field>
+			<field name="res_model">ir.ville</field>
+			<field name="view_mode">list,form</field>
+		</record>
+
+		<menuitem action="action_ir_ville" id="menu_ir_ville"
+			parent="menu_declaration_conf_ir" sequence="4" />
+		
+		
+		<!-- ir.element.exonere -->
+		<record id="view_ir_element_exonere_form" model="ir.ui.view">
+			<field name="name">ir.element.exonere.form</field>
+			<field name="model">ir.element.exonere</field>
+			<field name="arch" type="xml">
+				<form string="Eléments exonérés">
+					<group col="4" colspan="4">
+						<field name="libelle" />
+						<field name="code" />
+					</group>
+
+				</form>
+			</field>
+		</record>
+
+		<record id="view_ir_element_exonere_tree" model="ir.ui.view">
+			<field name="name">ir.element.exonere.tree</field>
+			<field name="model">ir.element.exonere</field>
+			<field name="type">list</field>
+			<field name="arch" type="xml">
+				<list string="Eléments exonérés">
+						<field name="libelle" />
+						<field name="code" />
+				</list>
+			</field>
+		</record>
+		
+		<record id="action_ir_element_exonere" model="ir.actions.act_window">
+			<field name="name">Eléments exonérés</field>
+			<field name="res_model">ir.element.exonere</field>
+			<field name="view_mode">list,form</field>
+		</record>
+
+		<menuitem action="action_ir_element_exonere" id="menu_ir_element_exonere"
+			parent="menu_declaration_conf_ir" sequence="5" />
+			
+	</data>
+</odoo>

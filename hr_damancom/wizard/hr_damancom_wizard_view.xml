@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE openerp SYSTEM "openerp.dtd" >
+
+<openerp>
+	<data>
+		
+		<menuitem id="menu_hr_damancom" parent="hr.menu_hr_root"
+			name="Damancom" />
+			
+		<!--
+			Form View : Model 'e-BDS'
+		-->
+		<record model="ir.ui.view" id="e_bds_view_form">
+			<field name="name">e-BDS</field>
+			<field name="model">e_bds</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form col="3" string="e-BDS" version="7.0">
+					<field invisible="1" name="state" />
+					<field name="name" invisible="1" />
+
+					<group invisible="state != 'choose'" string="e-BDS">
+<!-- 						<field name="company_id" /> -->
+						<field name="period_id" />
+						<field name="file_import" />
+					</group>
+
+					<div invisible="state != 'get'">
+						<h2>Fichier e-BDS</h2>
+						<p>
+							Vous pouvez télécharger le fichier e-BDS créé à partir du
+							lien :
+							<field name="file_export" filename="name" />
+						</p>
+					</div>
+					<footer invisible="state != 'choose'">
+						<button string="Générer" type="object" name="generate"
+							icon="fa-file-text" />
+						<button string="Annuler" special="cancel" icon="fa-times" />
+					</footer>
+				</form>
+			</field>
+		</record>
+		
+		<!--
+			Action : Model 'e-BDS'
+		-->
+		<record id="e_bds_action" model="ir.actions.act_window">
+			<field name="name">e-BDS</field>
+			<field name="res_model">e_bds</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+		
+		<!--
+			Menu : Model 'e-BDS'
+		-->
+		<menuitem name="e-BDS" action="e_bds_action" id="e_bds_menu"
+			parent="menu_hr_damancom" />
+
+	</data>
+</openerp>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<data>
+
+		<record model="ir.ui.view" id="employe_pret_logement_tree_view">
+			<field name="name">Prêts de logement</field>
+			<field name="model">hr.payroll.pret.logement</field>
+			<field name="priority" eval="15" />
+<!--			<field name="type">tree</field>-->
+			<field name="arch" type="xml">
+				<list>
+					<field name="prlog_employe" />
+					<field name="prlog_rubrique" />
+					<field name="prlog_montant" />
+				</list>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="employe_pret_logement_form_view">
+			<field name="name">Prêts de logement</field>
+			<field name="model">hr.payroll.pret.logement</field>
+			<field name="priority" eval="15" />
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form>
+					<header>
+						<button string="Calculer" type="object" name="generer_echeances"
+							class="oe_highlight" invisible="state != 'draft'" />
+						<button name="appliquer" string="Appliquer" type="object"
+							class="oe_highlight" groups="base.group_hr_user" />
+						<button name="annuler" invisible="state not in ('applied','en_cours')" string="Annuler"
+							type="object" class="oe_highlight" groups="base.group_hr_user" />
+						<field name="state" widget="statusbar" statusbar_visible="draft,en_cours,applied,canceled"
+							statusbar_colors='{"applied":"green"}' />
+					</header>
+					<sheet>
+						<group>
+							<group>
+								<field name="prlog_employe" groups="base.group_hr_user" />
+								<field name="prlog_rubrique" groups="base.group_hr_user" />
+								<!-- <field name="prlog_montant_paye" /> <field name="prlog_montant_restant" 
+									/> -->
+							</group>
+
+							<group>
+								<field name="prlog_montant" />
+								<field name="prlog_frequence" />
+								<field name="prlog_taux" />
+								<field name="prlog_mois_debut" />
+								<!--<field name="period_id" /> -->
+							</group>
+						</group>
+						<group>
+							<group string="Echéances">
+								<field name="fichier_import" />
+								<field name="prlog_echeance_ids">
+									<list editable="top">
+										<!-- <field name="period_id" /> -->
+										<field name="date_ech" />
+										<field name="montant_ech" />
+										<field name="reliquat_ech" />
+										<field name="interet" />
+										<field name="reliquat_interet" />
+									</list>
+								</field>
+							</group>
+						</group>
+					</sheet>
+				</form>
+
+			</field>
+		</record>
+		
+		<!-- Menus : Gestion des avances et prêts -->
+		<record id="act_hr_payroll_pret_logement" model="ir.actions.act_window">
+			<field name="name">Prêts de logement</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">hr.payroll.pret.logement</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+				</p>
+			</field>
+		</record>
+		
+		<menuitem id="menu_act_prets_logement" name="Prêts de logement"
+			parent="hr_avance_salaire.menu_avance_pret" action="act_hr_payroll_pret_logement"
+			sequence="2" />
+
+	</data>
+</odoo>

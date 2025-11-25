@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="bulletin_paie_id" model="ir.actions.report">
+            <field name="name">Bulletin de paie</field>
+            <field name="model">hr.payroll_ma.bulletin</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hr_payroll_ma.bulletin_paie</field>
+            <field name="report_file">hr_payroll_ma.bulletin_paie</field>
+            <field name="print_report_name">'Bulletin de paie - %s' % (object.name or object.id)</field>
+            <field name="binding_model_id" ref="model_hr_payroll_ma_bulletin"/>
+        </record>
+
+    </data>
+</odoo>

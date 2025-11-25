@@ -1,0 +1,3 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_wizard_export_bulletin_paie","wizard.export.bulletin.paie","model_wizard_export_bulletin_paie","hr_payroll_ma.group_hr_payroll",1,1,1,1
+"access_wizard_export_journal_paie","wizard.export.journal.paie","model_wizard_export_journal_paie","hr_payroll_ma.group_hr_payroll",1,1,1,1

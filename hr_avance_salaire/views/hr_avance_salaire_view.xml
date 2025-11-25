@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<data>
+
+		<!-- Tree View : Model 'Avances et Prêts' -->
+		<record model="ir.ui.view" id="hr_avance_salaire_tree_view">
+			<field name="name">Avances et Prêts</field>
+			<field name="model">hr.avance.salaire</field>
+			<field name="priority" eval="15" />
+			<field name="arch" type="xml">
+				<list>
+					<field name="pr_employe" />
+					<field name="pr_rubrique" />
+					<field name="pr_montant" />
+					<field name="pr_montant_paye" />
+					<field name="pr_montant_restant" />
+				</list>
+			</field>
+		</record>
+
+		<!-- Form View : Model 'Avances et Prêts' -->
+		<record model="ir.ui.view" id="hr_avance_salaire_form_view">
+			<field name="name">Avances et Prêts</field>
+			<field name="model">hr.avance.salaire</field>
+			<field name="priority" eval="15" />
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form>
+					<header>
+						<button string="Générer échéances" type="object"
+							name="generer_echeances" class="oe_highlight" invisible="state != 'draft'" />
+						<button name="appliquer_echeances"
+							invisible="state != 'echeances_generees'" string="Appliquer" type="object"
+							class="oe_highlight" groups="base.group_hr_user" />
+						<button name="annuler_echeance"
+							invisible="state not in ('applied','echeances_generees')" string="Annuler"
+							type="object" class="oe_highlight" groups="base.group_hr_user" />
+						<field name="state" widget="statusbar"
+							statusbar_visible="draft,echeances_generees,applied,canceled"
+							statusbar_colors='{"applied":"green"}' />
+					</header>
+					<sheet>
+						<group>
+							<group>
+								<field name="pr_employe" groups="base.group_hr_user" />
+								<field name="pr_rubrique" groups="base.group_hr_user" />
+								<field name="pr_montant_paye" />
+								<field name="pr_montant_restant" />
+							</group>
+
+							<group>
+								<field name="pr_montant" />
+								<field name="pr_frequence" />
+								<field name="pr_mois_debut" />
+								<!--<field name="period_id" /> -->
+							</group>
+						</group>
+						<group>
+							<group string="Echéances">
+
+								<field name="pr_echeance_ids">
+									<list editable="top">
+										<!-- <field name="period_id" /> -->
+										<field name="date_ech" />
+										<field name="montant_ech" />
+										<field name="reliquat_ech" />
+									</list>
+								</field>
+							</group>
+						</group>
+					</sheet>
+				</form>
+
+			</field>
+		</record>
+
+		<!-- Action : Model 'Avances et Prêts' -->
+		<record id="act_hr_avance_salaire" model="ir.actions.act_window">
+			<field name="name">Avances et Prêts</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">hr.avance.salaire</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					<!-- Add Text Here -->
+				</p>
+				<p>
+					<!-- More details about what a user can do with this object will be 
+						OK -->
+				</p>
+			</field>
+		</record>
+
+		<menuitem id="menu_avance_pret" name="Gestion des avances et prêts"
+			parent="hr.menu_hr_root" sequence="2" />
+		
+		<menuitem id="menu_hr_avance_salaire" name="Avances sur salaire"
+			parent="menu_avance_pret" action="act_hr_avance_salaire"
+			sequence="2" />
+
+
+	</data>
+</odoo>

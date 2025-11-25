@@ -1,0 +1,769 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		
+		<!-- ir.personnel.permanant.element.exonere -->
+		<record id="view_ir_personnel_permanant_element_exonere_form" model="ir.ui.view">
+			<field name="name">ir.personnel.permanant.element.exonere.form</field>
+			<field name="model">ir.personnel.permanant.element.exonere</field>
+			<field name="arch" type="xml">
+				<form string="Eléments exonérés d’un personnel permanent">
+					<group col="4" colspan="4">
+						<field name="ir_element_exonere_id" />
+						<field name="montantExonere" />
+					</group>
+
+				</form>
+			</field>
+		</record>
+
+		<record id="view_ir_personnel_permanant_element_exonere_tree" model="ir.ui.view">
+			<field name="name">ir.personnel.permanant.element.exonere.tree</field>
+			<field name="model">ir.personnel.permanant.element.exonere</field>
+			<field name="type">list</field>
+			<field name="arch" type="xml">
+				<list string="Eléments exonérés d’un personnel permanent">
+						<field name="ir_element_exonere_id" />
+						<field name="montantExonere" />
+				</list>
+			</field>
+		</record>
+		
+		<!-- ir.personnel.permanant -->
+		<record id="view_ir_personnel_permanant_form" model="ir.ui.view">
+			<field name="name">ir.personnel.permanant.form</field>
+			<field name="model">ir.personnel.permanant</field>
+			<field name="arch" type="xml">
+				<form string="Personnel permanent">
+					<group col="4" colspan="4">
+						<field name="nom" />
+						<field name="prenom" />
+						<field name="adressePersonnelle" />
+						<field name="numCNI" />
+						<field name="numCE" />
+						<field name="numPPR" />
+						<field name="numCNSS" />
+						<field name="ifu" />
+						<!-- MAJ : 3.0 -->
+						<field name="salaireBaseAnnuel" />
+						<field name="mtBrutTraitementSalaire" />
+						<field name="periode" />
+						<field name="mtExonere" />
+						<field name="mtEcheances" />
+						<field name="nbrReductions" />
+						<field name="mtIndemnite" />
+						<field name="mtAvantages" />
+						<field name="mtRevenuBrutImposable" />
+						<field name="mtFraisProfess" />
+						<field name="mtCotisationAssur" />
+						<field name="mtAutresRetenues" />
+						<field name="mtRevenuNetImposable" />
+						<field name="mtTotalDeduction" />
+						<field name="irPreleve" />
+						<field name="casSportif" />
+						<field name="numMatricule" />
+						<field name="datePermis" />
+						<field name="dateAutorisation" />
+						<field name="refSituationFamiliale" />
+						<field name="refTaux" />
+					</group>
+					<group>
+						<field name="element_exonere_ids" nolabel="1"/>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_ir_personnel_permanant_tree" model="ir.ui.view">
+			<field name="name">ir.personnel.permanant.tree</field>
+			<field name="model">ir.personnel.permanant</field>
+			<field name="type">list</field>
+			<field name="arch" type="xml">
+				<list string="Personnel permanent">
+					<field name="nom" />
+					<field name="prenom" />
+					<field name="adressePersonnelle" />
+					<field name="numCNI" />
+					<field name="numCE" />
+					<field name="numPPR" />
+					<field name="numCNSS" />
+					<field name="ifu" />
+					<!-- MAJ : 3.0 -->
+					<field name="salaireBaseAnnuel" />
+					<field name="mtBrutTraitementSalaire" />
+					<field name="periode" />
+					<field name="mtExonere" />
+					<field name="mtEcheances" />
+					<field name="nbrReductions" />
+					<field name="mtIndemnite" />
+					<field name="mtAvantages" />
+					<field name="mtRevenuBrutImposable" />
+					<field name="mtFraisProfess" />
+					<field name="mtCotisationAssur" />
+					<field name="mtAutresRetenues" />
+					<field name="mtRevenuNetImposable" />
+					<field name="mtTotalDeduction" />
+					<field name="irPreleve" />
+					<field name="casSportif" />
+					<field name="numMatricule" />
+					<field name="datePermis" />
+					<field name="dateAutorisation" />
+					<field name="refSituationFamiliale" />
+					<field name="refTaux" />
+				</list>
+			</field>
+		</record>
+
+		<record id="action_ir_personnel_permanant" model="ir.actions.act_window">
+			<field name="name">Personnel permanent</field>
+			<field name="res_model">ir.personnel.permanant</field>
+			<field name="view_mode">list,form</field>
+		</record>
+
+
+		<menuitem id="menu_declaration_ir" parent="menu_ir_dec"
+			sequence="1" name="Déclarations IR"/>
+		
+		<menuitem id="menu_details_declaration_ir" parent="menu_ir_dec"
+			sequence="1" name="Détails des déclarations IR" />
+			
+		<menuitem action="action_ir_personnel_permanant" id="menu_ir_personnel_permanant"
+			parent="menu_details_declaration_ir" sequence="2" />
+
+
+		<!-- ir.personnel.exonere -->
+		<!-- MAJ : 3.0 -->
+		<record id="view_ir_personnel_exonere_form" model="ir.ui.view">
+			<field name="name">ir.personnel.exonere.form</field>
+			<field name="model">ir.personnel.exonere</field>
+			<field name="arch" type="xml">
+				<form string="Salariés exonérés">
+					<group col="4" colspan="4">
+						<field name="nom" />
+						<field name="prenom" />
+						<field name="adressePersonnelle" />
+						<field name="numCNI" />
+						<field name="numCE" />
+						<field name="numCNSS" />
+						<field name="ifu" />
+						<field name="periode" />
+						<field name="dateRecrutement" />
+						<field name="mtBrutTraitementSalaire" />
+						<field name="mtIndemniteArgentNature" />
+						<field name="mtIndemniteFraisPro" />
+						<field name="mtRevenuBrutImposable" />
+						<field name="mtRetenuesOperees" />
+						<field name="mtRevenuNetImposable" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_ir_personnel_exonere_tree" model="ir.ui.view">
+			<field name="name">ir.personnel.exonere.tree</field>
+			<field name="model">ir.personnel.exonere</field>
+			<field name="type">list</field>
+			<field name="arch" type="xml">
+				<list string="Salariés exonérés">
+					<field name="nom" />
+					<field name="prenom" />
+					<field name="adressePersonnelle" />
+					<field name="numCNI" />
+					<field name="numCE" />
+					<field name="numCNSS" />
+					<field name="ifu" />
+					<field name="periode" />
+					<field name="dateRecrutement" />
+					<field name="mtBrutTraitementSalaire" />
+					<field name="mtIndemniteArgentNature" />
+					<field name="mtIndemniteFraisPro" />
+					<field name="mtRevenuBrutImposable" />
+					<field name="mtRetenuesOperees" />
+					<field name="mtRevenuNetImposable" />
+				</list>
+			</field>
+		</record>
+
+		<record id="action_ir_personnel_exonere" model="ir.actions.act_window">
+			<field name="name">Salariés exonérés</field>
+			<field name="res_model">ir.personnel.exonere</field>
+			<field name="view_mode">list,form</field>
+		</record>
+		
+		<menuitem action="action_ir_personnel_exonere" id="menu_ir_personnel_exonere"
+			parent="menu_details_declaration_ir" sequence="3" />
+			
+			
+		<!-- ir.personnel.occasionel -->
+		<record id="view_ir_personnel_occasionel_form" model="ir.ui.view">
+			<field name="name">ir.personnel.occasionel.form</field>
+			<field name="model">ir.personnel.occasionel</field>
+			<field name="arch" type="xml">
+				<form string="Personnel occasionnel">
+					<group col="4" colspan="4">
+						<field name="nom" />
+						<field name="prenom" />
+						<field name="adressePersonnelle" />
+						<field name="numCNI" />
+						<field name="numCE" />
+						<field name="ifu" />
+						<field name="mtBrutSommes" />
+						<field name="irPreleve" />
+						<field name="profession" />
+					</group>
+
+				</form>
+			</field>
+		</record>
+
+		<record id="view_ir_personnel_occasionel_tree" model="ir.ui.view">
+			<field name="name">ir.personnel.occasionel.tree</field>
+			<field name="model">ir.personnel.occasionel</field>
+			<field name="type">list</field>
+			<field name="arch" type="xml">
+				<list string="Personnel occasionnel">
+					<field name="nom" />
+					<field name="prenom" />
+					<field name="adressePersonnelle" />
+					<field name="numCNI" />
+					<field name="numCE" />
+					<field name="ifu" />
+					<field name="mtBrutSommes" />
+					<field name="irPreleve" />
+					<field name="profession" />
+				</list>
+			</field>
+		</record>
+
+		<record id="action_ir_personnel_occasionel" model="ir.actions.act_window">
+			<field name="name">Personnel occasionnel</field>
+			<field name="res_model">ir.personnel.occasionel</field>
+			<field name="view_mode">list,form</field>
+		</record>
+
+		<menuitem action="action_ir_personnel_occasionel" id="menu_ir_personnel_occasionel"
+			parent="menu_details_declaration_ir" sequence="3" />
+
+		<!-- ir.personnel.stagiaire -->
+		<record id="view_ir_personnel_stagiaire_form" model="ir.ui.view">
+			<field name="name">ir.personnel.stagiaire.form</field>
+			<field name="model">ir.personnel.stagiaire</field>
+			<field name="arch" type="xml">
+				<form string="Stagiaires">
+					<group col="4" colspan="4">
+						<field name="nom" />
+						<field name="prenom" />
+						<field name="adressePersonnelle" />
+						<field name="numCNI" />
+						<field name="numCE" />
+						<field name="numCNSS" />
+						<field name="ifu" />
+						<field name="mtBrutTraitementSalaire" />
+						<field name="mtBrutIndemnites" />
+						<field name="mtRetenues" />
+						<field name="mtRevenuNetImposable" />
+						<field name="periode" />
+					</group>
+
+				</form>
+			</field>
+		</record>
+
+		<record id="view_ir_personnel_stagiaire_tree" model="ir.ui.view">
+			<field name="name">ir.personnel.stagiaire.tree</field>
+			<field name="model">ir.personnel.stagiaire</field>
+			<field name="type">list</field>
+			<field name="arch" type="xml">
+				<list string="Stagiaires">
+					<field name="nom" />
+					<field name="prenom" />
+					<field name="adressePersonnelle" />
+					<field name="numCNI" />
+					<field name="numCE" />
+					<field name="numCNSS" />
+					<field name="ifu" />
+					<field name="mtBrutTraitementSalaire" />
+					<field name="mtBrutIndemnites" />
+					<field name="mtRetenues" />
+					<field name="mtRevenuNetImposable" />
+					<field name="periode" />
+				</list>
+			</field>
+		</record>
+
+		<record id="action_ir_personnel_stagiaire" model="ir.actions.act_window">
+			<field name="name">Stagiaires</field>
+			<field name="res_model">ir.personnel.stagiaire</field>
+			<field name="view_mode">list,form</field>
+		</record>
+
+		<menuitem action="action_ir_personnel_stagiaire" id="menu_ir_personnel_stagiaire"
+			parent="menu_details_declaration_ir" sequence="4" />
+		
+		<!-- ir.personnel.doctorant -->
+		<record id="view_ir_personnel_doctorant_form" model="ir.ui.view">
+			<field name="name">ir.personnel.doctorant.form</field>
+			<field name="model">ir.personnel.doctorant</field>
+			<field name="arch" type="xml">
+				<form string="Doctorants">
+					<group col="4" colspan="4">
+						<field name="nom" />
+						<field name="prenom" />
+						<field name="adressePersonnelle" />
+						<field name="numCNI" />
+						<field name="numCE" />
+						<field name="mtBrutIndemnites" />
+					</group>
+
+				</form>
+			</field>
+		</record>
+
+		<record id="view_ir_personnel_doctorant_tree" model="ir.ui.view">
+			<field name="name">ir.personnel.doctorant.tree</field>
+			<field name="model">ir.personnel.doctorant</field>
+			<field name="type">list</field>
+			<field name="arch" type="xml">
+				<list string="Doctorants">
+					<field name="nom" />
+					<field name="prenom" />
+					<field name="adressePersonnelle" />
+					<field name="numCNI" />
+					<field name="numCE" />
+					<field name="mtBrutIndemnites" />
+				</list>
+			</field>
+		</record>
+
+		<record id="action_ir_personnel_doctorant" model="ir.actions.act_window">
+			<field name="name">Doctorants</field>
+			<field name="res_model">ir.personnel.doctorant</field>
+			<field name="view_mode">list,form</field>
+		</record>
+
+		<menuitem action="action_ir_personnel_doctorant" id="menu_ir_personnel_doctorant"
+			parent="menu_details_declaration_ir" sequence="5" />
+			
+			
+		<!-- ir.personnel.beneficiare -->
+		<record id="view_ir_personnel_beneficiare_form" model="ir.ui.view">
+			<field name="name">ir.personnel.beneficiare.form</field>
+			<field name="model">ir.personnel.beneficiare</field>
+			<field name="arch" type="xml">
+				<form string="Personnel bénéficiaire">
+					<group col="4" colspan="4">
+						<field name="nom" />
+						<field name="prenom" />
+						<field name="adressePersonnelle" />
+						<field name="numCNI" />
+						<field name="numCE" />
+						<field name="numCNSS" />
+						<field name="ifu" />
+						<field name="organisme" />
+						<field name="nbrActionsAcquises" />
+						<field name="nbrActionsDistribuees" />
+						<field name="prixAcquisition" />
+						<field name="valeurActionAttribution" />
+						<field name="valeurActionLeveeOption" />
+						<field name="mtAbondement" />
+						<field name="valeurActionLeveeOption" />
+						<field name="nbrActionsCedees" />
+						<field name="complementSalaire" />
+						<field name="dateAttribution" />
+						<field name="dateLeveOption" />
+						<field name="dateCession" />
+					</group>
+
+				</form>
+			</field>
+		</record>
+
+		<record id="view_ir_personnel_beneficiare_tree" model="ir.ui.view">
+			<field name="name">ir.personnel.beneficiare.tree</field>
+			<field name="model">ir.personnel.beneficiare</field>
+			<field name="type">list</field>
+			<field name="arch" type="xml">
+				<list string="Personnel bénéficiaire">
+					<field name="nom" />
+					<field name="prenom" />
+					<field name="adressePersonnelle" />
+					<field name="numCNI" />
+					<field name="numCE" />
+					<field name="numCNSS" />
+					<field name="ifu" />
+					<field name="organisme" />
+					<field name="nbrActionsAcquises" />
+					<field name="nbrActionsDistribuees" />
+					<field name="prixAcquisition" />
+					<field name="valeurActionAttribution" />
+					<field name="valeurActionLeveeOption" />
+					<field name="mtAbondement" />
+					<field name="valeurActionLeveeOption" />
+					<field name="nbrActionsCedees" />
+					<field name="complementSalaire" />
+					<field name="dateAttribution" />
+					<field name="dateLeveOption" />
+					<field name="dateCession" />
+				</list>
+			</field>
+		</record>
+
+		<record id="action_ir_personnel_beneficiare" model="ir.actions.act_window">
+			<field name="name">Personnel bénéficiaire</field>
+			<field name="res_model">ir.personnel.beneficiare</field>
+			<field name="view_mode">list,form</field>
+		</record>
+
+		<menuitem action="action_ir_personnel_beneficiare" id="menu_ir_personnel_beneficiare"
+			parent="menu_details_declaration_ir" sequence="5" />
+
+		<!-- ir.personnel.beneficiare.epargne -->
+
+		<record id="view_ir_personnel_beneficiare_epargne_form" model="ir.ui.view">
+			<field name="name">ir.personnel.beneficiare.epargne.form</field>
+			<field name="model">ir.personnel.beneficiare.epargne</field>
+			<field name="arch" type="xml">
+				<form string="Personnel bénéficiaire d’abondement">
+					<group col="4" colspan="4">
+						<field name="nom" />
+						<field name="prenom" />
+						<field name="adressePersonnelle" />
+						<field name="numCNI" />
+						<field name="numCE" />
+						<field name="numCNSS" />
+						<field name="commune" />
+						<field name="numPlan" />
+						<field name="duree" />
+						<field name="dateOuverture" />
+						<field name="mtAbondement" />
+						<field name="mtAnuuelRevenuSalarial" />
+					</group>
+
+				</form>
+			</field>
+		</record>
+
+		<record id="view_ir_personnel_beneficiare_epargne_tree" model="ir.ui.view">
+			<field name="name">ir.personnel.beneficiare.epargne.tree</field>
+			<field name="model">ir.personnel.beneficiare.epargne</field>
+			<field name="type">list</field>
+			<field name="arch" type="xml">
+				<list string="Personnel bénéficiaire d’abondement">
+					<field name="nom" />
+					<field name="prenom" />
+					<field name="adressePersonnelle" />
+					<field name="numCNI" />
+					<field name="numCE" />
+					<field name="numCNSS" />
+					<field name="commune" />
+					<field name="numPlan" />
+					<field name="duree" />
+					<field name="dateOuverture" />
+					<field name="mtAbondement" />
+					<field name="mtAnuuelRevenuSalarial" />
+				</list>
+			</field>
+		</record>
+
+		<record id="action_ir_personnel_beneficiare_epargne" model="ir.actions.act_window">
+			<field name="name">Personnel bénéficiaire d’abondement</field>
+			<field name="res_model">ir.personnel.beneficiare.epargne</field>
+			<field name="view_mode">list,form</field>
+		</record>
+
+		<menuitem action="action_ir_personnel_beneficiare_epargne"
+			id="menu_ir_personnel_beneficiare_epargne" parent="menu_details_declaration_ir"
+			sequence="6" />
+
+		<!-- ir.recapitulatif -->
+
+		<record id="view_ir_recapitulatif_form" model="ir.ui.view">
+			<field name="name">ir.recapitulatif.form</field>
+			<field name="model">ir.recapitulatif</field>
+			<field name="arch" type="xml">
+				<form string="Recapitulatif des traitements et salaires">
+					<group col="4" colspan="4">
+						<field name="mois" />
+						<field name="totalVersement" />
+						<field name="dateDerniereVersment" />
+					</group>
+					<group>
+						<field name="details" nolabel="1">
+							<list string="détails des paiements du mois" editable="bottom">
+								<field name="reference" />
+								<field name="totalVerse" />
+								<field name="principal" />
+								<field name="penalite" />
+								<field name="majorations" />
+								<field name="dateVersement" />
+								<field name="refMoyenPaiement" />
+								<field name="numQuittance" />
+							</list>
+						</field>
+					</group>
+
+				</form>
+			</field>
+		</record>
+
+		<record id="view_ir_recapitulatif_tree" model="ir.ui.view">
+			<field name="name">ir.recapitulatif.tree</field>
+			<field name="model">ir.recapitulatif</field>
+			<field name="type">list</field>
+			<field name="arch" type="xml">
+				<list string="Recapitulatif des traitements et salaires">
+					<field name="mois" />
+					<field name="totalVersement" />
+					<field name="dateDerniereVersment" />
+				</list>
+			</field>
+		</record>
+
+		<record id="action_ir_recapitulatif" model="ir.actions.act_window">
+			<field name="name">Recapitulatif des traitements et salaires</field>
+			<field name="res_model">ir.recapitulatif</field>
+			<field name="view_mode">list,form</field>
+		</record>
+
+		<menuitem action="action_ir_recapitulatif" id="menu_ir_recapitulatif"
+			parent="menu_details_declaration_ir" sequence="7" />
+
+		<!-- IR Declaration -->
+
+		<record id="view_ir_declaration_form" model="ir.ui.view">
+			<field name="name">ir.declaration.form</field>
+			<field name="model">ir.declaration</field>
+			<field name="arch" type="xml">
+				<form string="Declaration IR">
+					<header>
+						<button name="prepare" string="Préparer" type="object"
+							invisible="state != 'draft'" icon="fa-eraser" />
+						<button name="load_xml" string="Préparer XML" type="object"
+							invisible="state != 'prepare'" icon="fa-check-circle" />
+						<button name="load_data" string="Charger" type="object"
+							invisible="state != 'prepare'" icon="fa-check-circle" />
+						<button name="close" string="Clôturer" type="object"
+							invisible="state != 'load_xml'" />
+						<button name="back_draft" string="Remettre en brouillon" type="object" icon="fa-eraser" />
+						<button name="export_report" string="Exporter en excel" type="object" icon="fa-eraser" />
+						<button string="Générer XML" name="generate_ir_xml" type="object"
+							class="oe_highlight" />
+						<field name="state" widget="statusbar" statusbar_visible="draft,prepare,load_xml,close"/>
+						
+					</header>
+					<group col="4" colspan="4">
+						<field name="nom" />
+						<field name="prenom" />
+						<field name="raison_sociale" />
+						<field name="company_ids" widget="many2many_tags"/>
+						<field name="date_from" />
+						<field name="date_to" />
+						<field name="commune" />
+						<field name="annee" />
+					</group>
+					<group>
+						<field name="hr_payroll_ma_ids" readonly="1" widget="many2many_tags"/>
+					</group>
+					<group col="4" colspan="4" string="Effectif" invisible="state not in ('prepare','load_xml','close')">
+						<field name="effectifTotal" />
+						<field name="nbrPersoPermanent" />
+						<field name="nbrPersoOccasionnel" />
+						<field name="nbrStagiaires" />
+					</group>
+					<group string="Ficher XML" invisible="state not in ('load_xml','close')">
+						<field name="output" filename="output_name" />
+					</group>
+					<notebook invisible="state not in ('prepare','load_xml','close')">
+						<page string="Totaux des montants">
+							<group col="4" colspan="4" string="Totaux des montants">
+								<label
+									string="Total des Montants du revenu brut imposable du personnel permanent"
+									for="totalMtRevenuBrutImposablePP"/>
+								<field name="totalMtRevenuBrutImposablePP" nolabel="1" />
+								<label
+									string="Total des Montants du revenu net imposable du personnel permanent"
+									class="o_form_label" for="totalMtRevenuNetImposablePP"/>
+								<field name="totalMtRevenuNetImposablePP" nolabel="1" />
+								<label string="Total des déductions sur revenus du personnel permanent"
+									class="o_form_label" for="totalMtTotalDeductionPP"/>
+								<field name="totalMtTotalDeductionPP" nolabel="1" />
+								<label
+									string="Total de la colonne de l’ I.R. Prélevé du personnel permanent"
+									class="o_form_label" for="totalMtIrPrelevePP"/>
+								<field name="totalMtIrPrelevePP" nolabel="1" />
+								<label
+									string="Total des montants brut des sommes payées du personnel occasionnel"
+									class="o_form_label" for="totalMtBrutSommesPO"/>
+								<field name="totalMtBrutSommesPO" nolabel="1" />
+								<label
+									string="Total de la colonne de l’ I.R. Prélevé du personnel occasionnel"
+									class="o_form_label" for="totalIrPrelevePO"/>
+								<field name="totalIrPrelevePO" nolabel="1" />
+								<label
+									string="Total des montants brut des traitements,salaires et émoluments du tableau des stagiaires"
+									class="o_form_label" for="totalMtBrutTraitSalaireSTG"/>
+								<field name="totalMtBrutTraitSalaireSTG" nolabel="1" />
+								<label string="Total des montants brut des indemnités des stagiaires"
+									class="o_form_label" for="totalMtBrutIndemnitesSTG"/>
+								<field name="totalMtBrutIndemnitesSTG" nolabel="1" />
+								<label string="Total des montants des retenues opérées des stagiaires"
+									class="o_form_label" for="totalMtRetenuesSTG"/>
+								<field name="totalMtRetenuesSTG" nolabel="1" />
+								<label
+									string="Total des montants du revenu net imposable des stagiaires"
+									class="o_form_label" for="totalMtRevenuNetImpSTG"/>
+								<field name="totalMtRevenuNetImpSTG" nolabel="1" />
+								<label string="Total des sommes payées (A) +(B)+ (C)"
+									class="o_form_label" for="totalSommePayeRTS"/>
+								<field name="totalSommePayeRTS" nolabel="1" />
+								<label string="Total du montant annuel du revenu salarial"
+									class="o_form_label" for="totalmtAnuuelRevenuSalarial"/>
+								<field name="totalmtAnuuelRevenuSalarial" nolabel="1" />
+								<label string="Total du montant de l’abondement versé"
+									class="o_form_label" for="totalmtAbondement"/>
+								<field name="totalmtAbondement" nolabel="1" />
+								<label
+									string="Montant des traitements, salaires,indemnités et émoluments versés au personnel permanent (A)"
+									class="o_form_label" for="montantPermanent"/>
+								<field name="montantPermanent" nolabel="1" />
+								<label
+									string="Montant des traitements, salaires,indemnités et émoluments versés au personnel occasionnel (B)"
+									class="o_form_label" for="montantOccasionnel"/>
+								<field name="montantOccasionnel" nolabel="1" />
+								<label
+									string="Montant des traitements, salaires,indemnités et émoluments versés au personnel occasionnel (C)"
+									class="o_form_label" for="montantStagiaire"/>
+								<field name="montantStagiaire" nolabel="1" />
+								<label string="Référence de la déclaration" class="o_form_label" for="referenceDeclaration"/>
+								<field name="referenceDeclaration" nolabel="1" />
+							</group>
+						</page>
+						<page string="Personnel permanant">
+							<field name="file_data_permanent" filename="file_name_permanent" />
+							<button name="file_parsing_permanent" string="Importer" type="object"/>
+							<group>
+								<field name="pp_lines" nolabel="1" widget="many2many" />
+							</group>
+						</page>
+						<page string="Personnel exonéré">
+							<field name="file_data_exonere" filename="file_name_exonere" />
+							<button name="file_parsing_exonere" string="Importer" type="object"/>
+							<group>
+								<field name="pe_lines" nolabel="1" widget="many2many" />
+							</group>
+						</page>
+						<page string="Personnel occasionnel">
+							<field name="file_data_occasionnel" filename="file_name_occasionnel" />
+							<button name="file_parsing_occasionnel" string="Importer" type="object"/>
+							<group>
+								<field name="po_lines" nolabel="1" widget="many2many" />
+							</group>
+						</page>
+						<page string="Stagiaires">
+							<field name="file_data_stagiaire" filename="file_name_stagiaire" />
+							<button name="file_parsing_stagiaire" string="Importer" type="object"/>
+							<group>
+								<field name="ps_lines" nolabel="1" widget="many2many" />
+							</group>
+						</page>
+						<page string="Doctorants">
+							<field name="file_data_doctorant" filename="file_name_doctorant" />
+							<button name="file_parsing_doctorant" string="Importer" type="object"/>
+							<group>
+								<field name="pd_lines" nolabel="1" widget="many2many" />
+							</group>
+						</page>
+						<page string="Personnel beneficiaire">
+							<group>
+								<field name="pb_lines" nolabel="1" widget="many2many" />
+							</group>
+						</page>
+						<page string="Personnel bénéficiaire d’abondement">
+							<group>
+								<field name="pbe_lines" nolabel="1" widget="many2many" />
+							</group>
+						</page>
+						<page string="Recapitulatif">
+							<field name="file_data_recap" filename="file_name_recap" />
+							<button name="file_parsing_recap" string="Importer" type="object"
+								icon="gtk-apply" />
+							<group>
+								<field name="recapitulatif_lines" nolabel="1" widget="many2many" />
+							</group>
+						</page>
+					</notebook>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_ir_declaration_tree" model="ir.ui.view">
+			<field name="name">ir.declaration.tree</field>
+			<field name="model">ir.declaration</field>
+			<field name="type">list</field>
+			<field name="arch" type="xml">
+				<list string="Declaration IR">
+					<field name="nom" />
+					<field name="prenom" />
+					<field name="raison_sociale" />
+					<field name="company_ids" />
+					<field name="date_from" />
+					<field name="date_to" />
+					<field name="commune" />
+					<field name="annee" />
+				</list>
+			</field>
+		</record>
+
+		<record id="action_ir_declaration" model="ir.actions.act_window">
+			<field name="name">Déclarations IR</field>
+			<field name="res_model">ir.declaration</field>
+			<field name="view_mode">list,form</field>
+		</record>
+		
+		<record id="action_ir_declaration_uid" model="ir.actions.act_window">
+			<field name="name">Mes déclarations</field>
+			<field name="res_model">ir.declaration</field>
+			<field name="view_mode">list,form</field>
+			<field name="domain">[('create_uid','=',uid)]</field>
+		</record>
+		
+		<menuitem action="action_ir_declaration" id="menu_ir_declaration"
+			parent="menu_declaration_ir" sequence="1" />
+			
+		<menuitem action="action_ir_declaration_uid" id="menu_ir_declaration_uid"
+			parent="menu_declaration_ir" sequence="2" />
+		
+
+		<record model="ir.ui.view" id="view_company_ir_dec">
+			<field name="name">res.company.form.ir.inherits</field>
+			<field name="model">res.company</field>
+			<field name="inherit_id" ref="base.view_company_form" />
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<field name="email" position='after'>
+					<field name="identifiantFiscal" />
+					<field name="numeroCIN" />
+					<field name="numeroCNSS" />
+					<field name="numeroCE" />
+					<field name="numeroRC" />
+				</field>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="view_employee_form_inherits_ir">
+			<field name="name">view.employee.form.inherits</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr_payroll_ma.view_employee_form_inherits" />
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<field name="address_home" position='after'>
+					<field name="ir_situation_famille" />
+					<field name="ir_taux_frais" />
+					<field name="casSportif" />
+					<field name="datePermis" />
+					<field name="dateAutorisation" />
+				</field>
+			</field>
+		</record>
+	</data>
+</odoo>

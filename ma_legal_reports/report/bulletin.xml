@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<template id="report_bulletin_paie_infomineo" inherit_id="hr_payroll_ma.bulletin_paie">
+			<xpath expr="//div[@class='page']" position="replace">
+				<div class="page"
+					style="font-size:12px !important;font-family:Book Antiqua !important;margin-top: 103px;margin-bottom:80px;line-height:1.17
+							!important">
+					<div class="row">
+						<table style="width:100%;">
+							<tr>
+								<td style="width:33%;">
+								</td>
+								<td style="width:10%;">
+								</td>
+								<td style="width:50%;">
+
+									<h3 style="text-align: center;vertical-align:middle;">
+										<strong>Bulletin de paie</strong>
+									</h3>
+									<h5 align="center">
+										Période du
+
+										<span t-field="o.period_id.date_start" t-field-options='{"format": "dd/MM/y"}' />
+										au
+										<span t-field="o.period_id.date_end" t-field-options='{"format": "dd/MM/y"}' />
+									</h5>
+								</td>
+							</tr>
+
+						</table>
+					</div>
+					<table style="width:100%;">
+						<tr>
+							<td
+								style="width:40%;vertical-align:middle;padding:10px;border: 1px black;background-color: #E5E5E5;">
+
+								<strong>Matricule : </strong>
+								<t t-if="o.employee_id.matricule">
+									<span t-field="o.employee_id.matricule" />
+								</t>
+								<t t-if="not o.employee_id.matricule">
+									-
+								</t>
+								<br />
+								<strong>Date d'entrée : </strong>
+								<t t-if="o.employee_id.date">
+									<span t-field="o.employee_id.date" t-field-options='{"format": "dd/MM/y"}' />
+								</t>
+								<t t-if="not o.employee_id.date">
+									-
+								</t>
+								<br />
+								<strong>Fonction : </strong>
+								<t t-if="o.employee_id.job_title">
+									<span t-field="o.employee_id.job_title" />
+								</t>
+								<t t-if="not o.employee_id.job_id">
+									-
+								</t>
+
+								<br />
+								<strong>Service : </strong>
+								<t t-if="o.employee_id.department_id">
+									<span t-field="o.employee_id.department_id.name" />
+								</t>
+								<t t-if="not o.employee_id.department_id">
+									-
+								</t>
+
+								<br />
+								<strong>N° CNSS : </strong>
+								<t t-if="o.employee_id.ssnid">
+									<span t-field="o.employee_id.ssnid" />
+								</t>
+								<t t-if="not o.employee_id.ssnid">
+									-
+								</t>
+
+								<br />
+								<t t-if="o.employee_id.cimr_number">
+								<strong>N° CIMR : </strong>
+
+									<span t-field="o.employee_id.cimr_number" />
+								<br />
+								</t>
+
+								<strong>Compte bancaire : </strong>
+
+								<t t-if="o.employee_id.compte">
+									<span t-field="o.employee_id.compte" />
+								</t>
+								<t t-if="not o.employee_id.compte">
+									-
+								</t>
+							</td>
+
+							<td style="width:20%;text-align: center;vertical-align:middle;">
+							</td>
+							<td style="width:40%;border: 1px black;background-color: #E5E5E5;">
+
+								<h5 style="vertical-align:middle;text-align: center;">
+									<strong>
+										<span t-field="o.employee_id.name" />
+										<span t-field="o.employee_id.prenom" />
+									</strong>
+								</h5>
+								<h5 style="vertical-align:middle;text-align: center;">
+									<strong>
+										<span t-field="o.employee_id.address_home" />
+									</strong>
+								</h5>
+								<strong>Date naissance : </strong>
+								<t t-if="o.employee_id.birthday">
+									<span t-field="o.employee_id.birthday" t-field-options='{"format": "dd/MM/y"}' />
+								</t>
+								<t t-if="not o.employee_id.birthday">
+									-
+								</t>
+								<br />
+								<strong>N° de CIN : </strong>
+								<t t-if="o.employee_id.identification_id">
+									<span t-field="o.employee_id.identification_id" />
+								</t>
+								<t t-if="not o.employee_id.identification_id">
+									-
+								</t>
+								<br />
+								<strong>Situation Familiale : </strong>
+								<t t-if="o.employee_id.marital">
+									<span t-field="o.employee_id.marital" />
+								</t>
+								<t t-if="not o.employee_id.marital">
+									-
+								</t>
+								<br />
+								<strong>Personnes à charge : </strong>
+								<t t-if="o.employee_id.chargefam">
+									<span t-field="o.employee_id.chargefam" />
+								</t>
+								<t t-if="not o.employee_id.chargefam">
+									-
+								</t>
+
+							</td>
+						</tr>
+
+					</table>
+
+					<br />
+					<br />
+					<table width="100%" style="border-collapse: collapse;">
+						<thead>
+							<tr width="100%">
+
+								<td
+									style="border: 1px solid black;text-align: center;background-color: #E5E5E5;padding:5px;"
+									width="30%" ROWSPAN="2">
+									<b>Libellé</b>
+								</td>
+								<td
+									style="border: 1px solid black;text-align: center;background-color: #E5E5E5;padding:5px;"
+									width="10%" ROWSPAN="2">
+									<b>Base </b>
+								</td>
+								<td
+									style="border: 1px solid black;text-align: center;background-color: #E5E5E5;padding:5px;"
+									width="10%" COLSPAN="3">
+									<b>Salarié</b>
+								</td>
+								<td
+									style="border: 1px solid black;text-align: center;background-color: #E5E5E5;padding:5px;"
+									width="10%" COLSPAN="2">
+									<b>Employeur</b>
+								</td>
+
+							</tr>
+							<tr width="100%">
+								<td
+									style="border: 1px solid black;text-align: center;background-color: #E5E5E5;padding:5px;"
+									width="10%">
+									<b>Taux</b>
+								</td>
+								<td
+									style="border: 1px solid black;text-align: center;background-color: #E5E5E5;padding:5px;"
+									width="10%">
+									<b>Gains</b>
+								</td>
+								<td
+									style="border: 1px solid black;text-align: center;background-color: #E5E5E5;padding:5px;"
+									width="10%">
+									<b>Retenues</b>
+								</td>
+								<td
+									style="border: 1px solid black;text-align: center;background-color: #E5E5E5;padding:5px;"
+									width="10%">
+									<b>Taux </b>
+								</td>
+								<td
+									style="border: 1px solid black;text-align: center;background-color: #E5E5E5;padding:5px;"
+									width="10%">
+									<b>Charges </b>
+								</td>
+
+							</tr>
+						</thead>
+
+						<t t-set="total_gains" t-value="0" />
+						<t t-set="total_retenues" t-value="0" />
+						<t t-set="total_charges" t-value="0" />
+
+						<tbody class="syst_hr_payroll_ma_tbody">
+							<div t-foreach="o.salary_line_ids" t-as="l">
+								<tr t-if="l.deductible == False">
+									<td style="border: 1px solid black;padding:5px;">
+										<span t-field="l.name" />
+									</td>
+									<td style="border: 1px solid black;text-align: right;padding:5px;">
+										<span t-field="l.base" />
+									</td>
+									<td style="border: 1px solid black;text-align: right;padding:5px;">
+										<span t-field="l.rate_employee" />
+									</td>
+									<td style="border: 1px solid black;text-align: right;padding:5px;">
+										<span t-field="l.subtotal_employee" />
+										<t t-set="total_gains" t-value="total_gains + l.subtotal_employee" />
+									</td>
+									<td style="border: 1px solid black;text-align: right;padding:5px;">
+
+									</td>
+									<td style="border: 1px solid black;text-align: right;padding:5px;">
+										<span t-field="l.rate_employee" />
+									</td>
+									<td style="border: 1px solid black;text-align: right;padding:5px;">
+										<span t-field="l.subtotal_employee" />
+										<t t-set="total_charges" t-value="total_charges + l.subtotal_employee" />
+									</td>
+								</tr>
+
+								<tr t-if="l.deductible == True">
+									<td style="border: 1px solid black;padding:5px;">
+										<span t-field="l.name" />
+									</td>
+									<td style="border: 1px solid black;text-align: right;padding:5px;">
+										<span t-field="l.base" />
+									</td>
+									<td style="border: 1px solid black;text-align: right;padding:5px;">
+										<span t-field="l.rate_employee" />
+									</td>
+									<td style="border: 1px solid black;text-align: right;padding:5px;">
+
+									</td>
+									<td style="border: 1px solid black;text-align: right;padding:5px;">
+										<span t-field="l.subtotal_employee" />
+										<t t-set="total_retenues" t-value="total_retenues + l.subtotal_employee" />
+									</td>
+									<td style="border: 1px solid black;text-align: right;padding:5px;">
+										<span t-field="l.rate_employer" />
+									</td>
+									<td style="border: 1px solid black;text-align: right;padding:5px;">
+										<span t-field="l.subtotal_employer" />
+										<t t-set="total_charges" t-value="total_charges + l.subtotal_employer" />
+									</td>
+								</tr>
+							</div>
+							<tr>
+								<td
+									style="font-size:12px;border: 1px solid black;padding:5px;background-color: #E5E5E5;">
+									<b>Total</b>
+								</td>
+								<td
+									style="font-size:12px;border: 1px solid black;text-align: right;padding:5px;background-color: #E5E5E5;">
+
+								</td>
+								<td
+									style="font-size:12px;border: 1px solid black;text-align: right;padding:5px;background-color: #E5E5E5;">
+
+								</td>
+								<td
+									style="font-size:12px;border: 1px solid black;text-align: right;padding:5px;background-color: #E5E5E5;">
+									<b>
+										<t t-esc="total_gains" />
+									</b>
+								</td>
+								<td
+									style="font-size:12px;border: 1px solid black;text-align: right;padding:5px;background-color: #E5E5E5;">
+									<b>
+										<t  t-esc="'%.2f'%total_retenues"/>
+									</b>
+								</td>
+								<td
+									style="font-size:12px;border: 1px solid black;text-align: right;padding:5px;background-color: #E5E5E5;">
+
+								</td>
+								<td
+									style="font-size:12px;border: 1px solid black;text-align: right;padding:5px;background-color: #E5E5E5;">
+									<b>
+										<t t-esc="'%.2f'%total_charges" />
+									</b>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<br />
+					<table width="100%" style="border-collapse: collapse;">
+						<tr width="100%">
+							<td width="10%">
+							</td>
+							<td width="45%">
+
+							</td>
+							<td width="10%">
+							</td>
+							<td width="10%">
+							</td>
+							<td width="15%">
+							</td>
+							<td width="10%">
+							</td>
+						</tr>
+						<tr width="100%">
+							<td width="10%">
+
+							</td>
+							<td width="45%" rowspan="2">
+
+							</td>
+							<td style="border: 1px solid black;text-align: center;" width="15%"
+								colspan="2">
+								<b>Réglé par</b>
+							</td>
+
+							<td style="border: 1px solid black;text-align: center;" width="15%">
+								<b>Net A Payer</b>
+							</td>
+
+						</tr>
+						<tr width="100%">
+							<td width="10%">
+							</td>
+
+							<td style="border: 1px solid black;text-align: center;" width="15%"
+								colspan="2">
+								<b>
+									<span align="right" t-field="o.employee_id.mode_reglement" />
+								</b>
+							</td>
+
+							<td
+								style="border: 1px solid black;text-align: center;vertical-align:middle;background-color: #E5E5E5;"
+								width="15%" rowspan="2">
+								<b>
+									<span align="right" t-field="o.salaire_net_a_payer" />
+								</b>
+							</td>
+							<td style="width:10%;text-align: center;vertical-align:middle;">
+							</td>
+
+						</tr>
+
+						<tr width="100%">
+							<td width="10%">
+
+							</td>
+							<td width="45%">
+
+							</td>
+							<td width="15%">
+
+							</td>
+
+							<td width="15%">
+
+							</td>
+							<td>
+							</td>
+						</tr>
+
+					</table>
+					<br />
+
+					<div>
+
+						<table width="100%"
+							style="border-collapse: collapse;font-size:10px !important;">
+							<tr>
+
+								<td
+									style="border: 1px solid black;text-align: center;width:15%;background-color: #E5E5E5;">
+									JOURS TRAVAILLES
+								</td>
+								<td
+									style="border: 1px solid black;text-align: center;width:15%;background-color: #E5E5E5;">
+									JOURS CONGES PAYES
+								</td>
+								<td
+									style="border: 1px solid black;text-align: center;width:10%;background-color: #E5E5E5;">
+									SALAIRE BRUT
+								</td>
+								<td
+									style="border: 1px solid black;text-align: center;width:15%;background-color: #E5E5E5;">
+									SALAIRE BRUT IMPOSABLE
+								</td>
+								<td
+									style="border: 1px solid black;text-align: center;width:15%;background-color: #E5E5E5;">
+									SALAIRE NET IMPOSABLE
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;text-align: center;width:15%;">
+
+									<span align="right" t-field="o.working_days" />
+
+								</td>
+								<td style="border: 1px solid black;text-align: center;width:15%;">
+
+									<span align="right" t-field="o.conges_payes" />
+
+								</td>
+								<td style="border: 1px solid black;text-align: center;width:10%;">
+
+									<span align="right" t-field="o.salaire_brute" />
+
+								</td>
+								<td style="border: 1px solid black;text-align: center;width:15;">
+
+									<span align="right" t-field="o.salaire_brute_imposable_ir" />
+
+								</td>
+								<td style="border: 1px solid black;text-align: center;width:15;">
+
+									<span align="right" t-field="o.salaire_net_imposable" />
+
+								</td>
+							</tr>
+						</table>
+					</div>
+
+					<br />
+					<div>
+
+						<table width="100%"
+							style="border-collapse: collapse;font-size:10px !important;">
+							<tr>
+
+								<td
+									style="border: 1px solid black;text-align: center;width:15%;background-color: #E5E5E5;">
+									CUMUL JOURS TRAVAILLES
+								</td>
+								<td
+									style="border: 1px solid black;text-align: center;width:15%;background-color: #E5E5E5;">
+									CUMUL BRUT
+								</td>
+								<td
+									style="border: 1px solid black;text-align: center;width:10%;background-color: #E5E5E5;">
+									CUMUL BRUT IMPOSABLE
+								</td>
+								<td
+									style="border: 1px solid black;text-align: center;width:15%;background-color: #E5E5E5;">
+									CUMUL NET IMPOSABLE
+								</td>
+								<td
+									style="border: 1px solid black;text-align: center;width:15%;background-color: #E5E5E5;">
+									CUMUL IR
+								</td>
+								<td
+									style="border: 1px solid black;text-align: center;width:15%;background-color: #E5E5E5;">
+									CUMUL COTISATIONS SALARIALE
+								</td>
+								<td
+									style="border: 1px solid black;text-align: center;width:15%;background-color: #E5E5E5;">
+									CUMUL COTISATIONS PATRONALE
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;text-align: center;width:15%;">
+
+									<span align="right" t-field="o.cumul_work_days" />
+
+								</td>
+								<td style="border: 1px solid black;text-align: center;width:10%;">
+
+									<span align="right" t-field="o.cumul_sb" />
+
+								</td>
+								<td style="border: 1px solid black;text-align: center;width:15;">
+
+									<span align="right" t-field="o.cumul_sbi" />
+
+								</td>
+								<td style="border: 1px solid black;text-align: center;width:15;">
+
+									<span align="right" t-field="o.cumul_sni" />
+
+								</td>
+								<td style="border: 1px solid black;text-align: center;width:15;">
+
+									<span align="right" t-field="o.cumul_igr" />
+
+								</td>
+								<td style="border: 1px solid black;text-align: center;width:15;">
+
+									<span align="right" t-field="o.cumul_ee_cotis" />
+
+								</td>
+								<td style="border: 1px solid black;text-align: center;width:15;">
+
+									<span align="right" t-field="o.cumul_er_cotis" />
+
+								</td>
+							</tr>
+						</table>
+					</div>
+
+				</div>
+			</xpath>
+		</template>
+	</data>
+</odoo>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<record id="hr_payroll_variable_form" model="ir.ui.view">
+			<field name="name">hr.payroll.variable.form</field>
+			<field name="model">hr.payroll.variable</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Saisie des variables">
+					<header>
+						<button name="action_in_progress" string="Valider la sélection"
+							type="object" invisible="state != 'draft'" icon="fa-eraser" />
+						<button name="action_done" string="Confirmer" type="object"
+							invisible="state != 'in_progress'" icon="fa-check-circle" />
+						<button name="action_cancel" string="Annuler" type="object"
+							invisible="state not in ('draft','in_progress','done')" />
+						<button name="action_reset" string="Remettre en brouillon"
+							type="object" invisible="state != 'cancel'" />
+						<field name="state" widget="statusbar" statusbar_visible="draft,in_progress,done" />
+					</header>
+					<sheet>
+						<group string="Sélection">
+							<field name="filter_type" />
+							<field name="hr_department_ids" invisible="filter_type != 'per_department'"
+							
+								widget="many2many_tags" />
+							<field name="hr_job_ids" invisible="filter_type != 'per_job'"
+								widget="many2many_tags" />
+							<button name="filter_confirm" string="Mettre à jour"
+								invisible="filter_type == 'per_employee' or state != 'draft'"
+								type="object" icon="fa-check-circle" />
+						</group>
+						<group string="Paramétres">
+							<group>
+								<field name="hr_rubrique_id" />
+								<field name="period_id" />
+							</group>
+							<group>
+								<field name="global_amount" />
+								<button name="set_global_amount" string="Appliquer"
+									invisible="state != 'in_progress'"
+									type="object"
+									icon="fa-check-circle" />
+							</group>
+						</group>
+						<group string="Importation" invisible="state != 'draft'">
+							<group>
+								<field name="file_content" />
+							</group>
+							<group>
+								<button name="import_file" string="Importer" type="object"/>
+							</group>
+						</group>
+						<notebook>
+							<page string="Lignes">
+								<field name="hr_payroll_variable_line_ids" nolabel="1" />
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="hr_payroll_variable_tree" model="ir.ui.view">
+			<field name="name">hr.payroll.variable.tree</field>
+			<field name="model">hr.payroll.variable</field>
+			<field name="type">list</field>
+			<field name="arch" type="xml">
+				<list string="Saisie des variables">
+					<field name="hr_rubrique_id" />
+					<field name="period_id" />
+					<field name="global_amount" />
+				</list>
+			</field>
+		</record>
+
+		<record id="hr_payroll_variable_line_tree" model="ir.ui.view">
+			<field name="name">hr.payroll.variable.line.tree</field>
+			<field name="model">hr.payroll.variable.line</field>
+			<field name="type">list</field>
+			<field name="arch" type="xml">
+				<list string="Saisie des lignes variables" editable="bottom">
+					<field name="employee_id" />
+					<field name="contract_id" domain="[('employee_id', '=', employee_id)]"
+						options="{'no_create': True, 'no_create_edit':True}" />
+					<field name="number" sum="Total" />
+					<field name="amount" sum="Total" />
+				</list>
+			</field>
+		</record>
+
+		<record id="hr_payroll_variable_action" model="ir.actions.act_window">
+			<field name="name">Saisie des Variables</field>
+			<field name="res_model">hr.payroll.variable</field>
+			<field name="view_mode">list,form</field>
+		</record>
+
+		<menuitem action="hr_payroll_variable_action" id="hr_payroll_variable_menuitem"
+			parent="menu_hr_root_payroll_ma" />
+
+	</data>
+</odoo>
+    
