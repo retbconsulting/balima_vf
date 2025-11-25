@@ -7,10 +7,13 @@
 	</record>
 	<!-- inserer la configuration du module de gestion de paie dans confiruration 
 		de HR -->
-	<menuitem id="payroll_ma_bank_configure" parent="hr.menu_human_resources_configuration"
-		name="Banques" action="config_banques" />
+	
 	<menuitem id="payroll_ma_configure" parent="menu_paie_root"
 		name="Configuration" sequence="100"/>
+	<menuitem id="payroll_ma_bank_configure" parent="payroll_ma_configure"
+		name="Banques" action="config_banques" />
+	<menuitem parent="payroll_ma_configure" id="menu_job_id"
+			action="hr.action_hr_job" sequence="4" />
 
 
 	<!-- ################### GONFIGURATION DES COTISATIONS #################### -->

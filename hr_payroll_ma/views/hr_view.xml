@@ -132,11 +132,11 @@
 					<attribute name="string">CIN</attribute>
 				</field>
 
-				<field name="name" position="after">
+				<!--<field name="name" position="after">
 					<div>
 						<field name="prenom" required="1" />
 					</div>
-				</field>
+				</field>-->
 				<field name="parent_id" position="after">
 					<field name="analytic_account_id"/>
            <field name="analytic_tag_id"/>
@@ -154,13 +154,11 @@
 							<group string="Banques">
 								<field name="bank"
 									invisible="mode_reglement != 'virement' "
-									required="mode_reglement == 'virement' "
 									 />
 								<field name="agence"
 									invisible="mode_reglement != 'virement' "/>
 								<field name="compte"
 									invisible="mode_reglement != 'virement' "
-									required="mode_reglement == 'virement' "
 									 />
 							</group>
 						</group>
@@ -209,7 +207,7 @@
                 <!-- Menu Employé lié à la vue des employés -->
                 <menuitem id="menu_hr_employee" name="Employé" parent="menu_paie_root" action="hr.open_view_employee_list_my" sequence="1"/>
 
-
+	
 <!--		<menuitem parent="" id="menu_ressources_humaines_root" name="Ressources Humaines"-->
 <!--			sequence="4" />-->
 
