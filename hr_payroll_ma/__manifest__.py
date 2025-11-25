@@ -27,7 +27,6 @@
 
         "import_wizard/hours_import.xml",
         "import_wizard/import_rub.xml",
-        "views/config.xml",
         "views/hr_view.xml",
         "views/hr_payroll_ma_view.xml",
         "views/hr_payroll_ma_sequence.xml",
@@ -36,6 +35,7 @@
         "views/hr_payroll_variable.xml",
         "views/hr_payroll_loan.xml",
         "views/res_partner_views.xml",
+        "views/config.xml",
         "security/hr_payroll_ma_security.xml",
         "security/hr_cotisation_security.xml",
         "security/ir.model.access.csv",
