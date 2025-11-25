@@ -204,10 +204,10 @@
 		</record>
 
           <!-- Menu principal renommé -->
-                <menuitem id="menu_paie_root" name="Paie" sequence="4"/>
+                <menuitem id="menu_paie_root" name="Paie" sequence="4" web_icon="hr_payroll,static/description/icon.png"/>
 
                 <!-- Menu Employé lié à la vue des employés -->
-                <menuitem id="menu_hr_employee" name="Employé" parent="menu_paie_root" action="hr.open_view_employee_list" sequence="1"/>
+                <menuitem id="menu_hr_employee" name="Employé" parent="menu_paie_root" action="hr.open_view_employee_list_my" sequence="1"/>
 
 
 <!--		<menuitem parent="" id="menu_ressources_humaines_root" name="Ressources Humaines"-->
