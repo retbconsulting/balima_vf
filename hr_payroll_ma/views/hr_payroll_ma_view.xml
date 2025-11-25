@@ -383,6 +383,8 @@
 			<field name="view_mode">list,form</field>
 		</record>
 
+		<menuitem id="payroll_ma_configure" parent="menu_paie_root"
+			name="Configuration" sequence="100"/>
 
 		<menuitem action="rubrique_all_act" id="rubrique_all_mi"
 			parent="payroll_ma_configure" />
