@@ -9,8 +9,8 @@
 		de HR -->
 	<menuitem id="payroll_ma_bank_configure" parent="hr.menu_human_resources_configuration"
 		name="Banques" action="config_banques" />
-	<menuitem id="payroll_ma_configure" parent="hr.menu_human_resources_configuration"
-		name="Gestion Paie" />
+	<menuitem id="payroll_ma_configure" parent="menu_paie_root"
+		name="Configuration" />
 
 
 	<!-- ################### GONFIGURATION DES COTISATIONS #################### -->
